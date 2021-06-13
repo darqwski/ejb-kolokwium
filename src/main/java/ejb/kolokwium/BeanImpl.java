@@ -1,24 +1,22 @@
 package ejb.kolokwium;
 
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpSession;
 
-@Stateless
+@Stateful
 public class BeanImpl implements IBeanInterface{
+    private int counter = 0;
     @Override
     public String someMethodWhichMustBeImplemented() {
         return "Some string";
     }
 
     @Override
-    public String anotherButWithParam(HttpSession session) {
-        Integer counter = (Integer) session.getAttribute("counter");
-        if(counter == null){
-            counter = 0;
-        }
+    public String anotherButWithParam() {
+
 
         counter++;
-        session.setAttribute("counter", counter);
         return ""+counter;
     }
 }
